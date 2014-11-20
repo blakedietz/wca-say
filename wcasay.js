@@ -17,6 +17,9 @@
 //    process.stdout.write('end');
 //});
 
+var foo = require('./lokkenisms.json');
+console.log(foo);
+
 function giveHead ()
 {
   var head =

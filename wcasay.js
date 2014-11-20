@@ -1,22 +1,6 @@
 #!/usr/bin/env node
 
-// set up the stdin
-//process.stdin.setEncoding('utf8');
-
-// print stdin
-//process.stdin.on('readable', function() {
-//  var chunk = process.stdin.read();
-//  if (chunk !== null)
-//  {
-//    process.stdout.write('data: ' + chunk);
-//    process.stdout.write(giveHead());
-//  }
-//});
-
-//process.stdin.on('end', function() {
-//    process.stdout.write('end');
-//});
-function wcaSay()
+function wcaSay ()
 {
     function giveHead ()
     {
@@ -42,6 +26,7 @@ function wcaSay()
                 + "        XXXXX           XX     \n"
                 + "           XXXXXX      XX      \n"
                 + "                 XXXXXXX       \n";
+
         return head;
     }
 
@@ -54,13 +39,12 @@ function wcaSay()
         {
             console.log ( finalString[i] );
         }
-
     }
 
     function decorate ( string )
     {
-        var lines = processString ( string );
-        var longestLine = determineLongestLineLength ( lines );
+        var lines            = processString ( string );
+        var longestLine      = determineLongestLineLength ( lines );
         var stringifiedLines = padString ( longestLine, lines );
 
         return decorateLines ( longestLine, stringifiedLines );
@@ -68,8 +52,6 @@ function wcaSay()
 
     function decorateLines ( lineLength, string )
     {
-
-
         for ( var i = 0; i < string.length; i++ )
         {
             string[i] = "|" + string[i] + "|";
@@ -134,7 +116,7 @@ function wcaSay()
 
         while ( words.length > 0 )
         {
-            lines.push ( createLine ( words, 5 ) );
+            lines.push ( createLine ( words, 10 ) );
         }
 
         return lines;
@@ -172,11 +154,11 @@ function wcaSay()
         return max;
     }
 
-    return function wcasay(string)
+    return function wcasay ( string )
     {
-        printFinalString(string);
+        printFinalString ( string );
         console.log ( giveHead () );
     }
 }
 
-module.exports = wcaSay();
+module.exports = wcaSay ();

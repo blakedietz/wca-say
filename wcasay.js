@@ -1,21 +1,21 @@
 #!/usr/bin/env node
 
 // set up the stdin
-process.stdin.setEncoding('utf8');
+//process.stdin.setEncoding('utf8');
 
 // print stdin
-process.stdin.on('readable', function() {
-  var chunk = process.stdin.read();
-  if (chunk !== null)
-  {
-    process.stdout.write('data: ' + chunk);
-    process.stdout.write(giveHead());
-  }
-});
+//process.stdin.on('readable', function() {
+//  var chunk = process.stdin.read();
+//  if (chunk !== null)
+//  {
+//    process.stdout.write('data: ' + chunk);
+//    process.stdout.write(giveHead());
+//  }
+//});
 
-process.stdin.on('end', function() {
-    process.stdout.write('end');
-});
+//process.stdin.on('end', function() {
+//    process.stdout.write('end');
+//});
 
 function giveHead ()
 {
@@ -44,11 +44,81 @@ function giveHead ()
   return head;
 }
 
+printFinalString('foo bar doo car czar hardy har har bar mar far spar');
 
-function padString(string)
+
+function printFinalString(string)
 {
-  var lines       = processString(string);
-  var longestLine = longestLineLength(lines);
+ var finalString = decorate(string);
+
+ for (var i = 0; i < finalString.length; i++)
+ {
+    console.log(finalString[i]);
+ }
+
+}
+
+function decorate(string)
+{
+  var lines            = processString(string);
+  var longestLine      = determineLongestLineLength(lines);
+  var stringifiedLines = padString(longestLine, lines);
+
+  return decorateLines(longestLine, stringifiedLines);
+}
+
+function decorateLines(lineLength, string)
+{
+
+
+    for (var i = 0; i < string.length; i++)
+    {
+       string[i] = "|" + string[i] + "|";
+    }
+
+    var border = createBorder(lineLength);
+    string.unshift('/' + border + '\\');
+
+    string.push('\\' + border + '/');
+
+    return string;
+}
+
+function createBorder(lineLength)
+{
+   var border = '';
+   for (var i = 0; i < lineLength; i++)
+   {
+       border += '-';
+   }
+
+   return border;
+}
+
+function padString(longestLineLength, lines)
+{
+  var stringifiedLines = [];
+
+  for (var i = 0; i < lines.length; i++)
+  {
+    var stringifiedLine = lines[i].join(' ');
+    stringifiedLines.push(addSpacesToLine(longestLineLength, stringifiedLine));
+  }
+
+  return stringifiedLines;
+}
+
+function addSpacesToLine(expectedLineLength, line)
+{
+  var spaces = '';
+  var numberOfSpaces = expectedLineLength - line.length;
+
+  for (var i = 0; i < numberOfSpaces; i++)
+  {
+    spaces += ' ';
+  }
+
+  return line += spaces;
 }
 
 function processString (string)
@@ -88,7 +158,7 @@ function createLine(wordsArray, numberOfWordsPerLine)
   return line;
 }
 
-function longestLineLength(lines)
+function determineLongestLineLength(lines)
 {
   var max = 0;
 

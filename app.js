@@ -1,6 +1,6 @@
-var lokkenismGenerator = require('./wcasay.js');
-var quoteGenerator = require('./lokkensay.js');
+#!/usr/bin/env node
+var talkingHead = require('./wcasay.js');
+var lokkenismGenerator = require('./lokkensay.js');
 
-
-//lokkenismGenerator('foo bar doo car czar hardy har har bar mar far spar');
-lokkenismGenerator( quoteGenerator() );
+// talkingHead('foo bar doo car czar hardy har har bar mar far spar jardy jar mar par yar pardy mardy dardy dar');
+talkingHead( lokkenismGenerator() );

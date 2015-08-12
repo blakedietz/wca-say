@@ -2,24 +2,29 @@
 var talkingHead              = require('./wcasay.js');
 var randomLokkenismGenerator = require('./random-lokkenism.js');
 
-// set up the stdin
-//process.stdin.setEncoding('utf8');
+var https   = require('https');
+var options =
+{
+    host       : 'raw.githubusercontent.com',
+    path       : '/wcahealth/mixed-metaphors/master/mixed-metaphors.json',
+    method     : 'GET'
+};
 
-// print stdin
-//process.stdin.on('readable', function() {
-//  var chunk = process.stdin.read();
-//  if (chunk !== null)
-//  {
-//    process.stdout.write('data: ' + chunk);
-//    process.stdout.write(giveHead());
-//  }
-//});
+https.request(options, function( response )
+{
+    var responseString = '';
 
-//process.stdin.on('end', function() {
-//    process.stdout.write('end');
-//});
+    response.on('data', function( chunk )
+    {
+        responseString += chunk;
+    });
 
-var lokkenisms = require('./lokkenisms.json');
-var randomLokkenisms = randomLokkenismGenerator().lokkenism(lokkenisms);
+    response.on('end', function()
+    {
+        var lokkenisms = JSON.parse( responseString );
+        var randomLokkenisms = randomLokkenismGenerator().lokkenism( lokkenisms );
 
-talkingHead(randomLokkenisms.lokkenism());
+        talkingHead(randomLokkenisms.lokkenism());
+    });
+})
+.end();

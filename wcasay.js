@@ -5,17 +5,18 @@ function wcaSay ()
     function giveHead ()
     {
         var head =
-                "         XXXXXXXX              \n"
+                "\033[34m"
+                + "         XXXXXXXX              \n"
                 + "     XXXX       XXXX           \n"
                 + "  XXX               XX         \n"
-                + " XX  XX XX XXX       XXX       \n"
-                + "XX  XX    XX XXXXX     XX      \n"
-                + " XX           XX XX     X      \n"
-                + "                  XX    XX     \n"
-                + "                  X XX   X     \n"
-                + "                     XX  X     \n"
-                + "                     XX  XX    \n"
-                + "XXXXXXXXXXXXXXXXXXXXXX    X    \n"
+                + " XX  \033[37mXX XX XXX       \033[34mXXX       \n"
+                + "XX  \033[37mXX    XX XXXXX     \033[34mXX      \n"
+                + " \033[37mXX           XX XX     \033[34mX      \n"
+                + "                  \033[37mXX    \033[34mXX     \n"
+                + "                  \033[37mX XX   \033[34mX     \n"
+                + "                     \033[37mXX  \033[34mX     \n"
+                + "                     \033[37mXX  \033[34mXX    \n"
+                + "\033[37mXXXXXXXXXXXXXXXXXXXXXX\033[34m    X    \n"
                 + "XX                        XX   \n"
                 + "XX                         XX  \n"
                 + "XX                         XXX \n"
@@ -25,7 +26,8 @@ function wcaSay ()
                 + "     XXXX                X     \n"
                 + "        XXXXX           XX     \n"
                 + "           XXXXXX      XX      \n"
-                + "                 XXXXXXX       \n";
+                + "                 XXXXXXX       \n"
+                + "\033[0m";
 
         return head;
     }

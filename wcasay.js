@@ -2,9 +2,9 @@
 
 function wcaSay ()
 {
-    function giveHead ()
+    function getLogo ()
     {
-        var head =
+        var logo =
                 "\033[34m"
                 + "         XXXXXXXX              \n"
                 + "     XXXX       XXXX           \n"
@@ -29,7 +29,7 @@ function wcaSay ()
                 + "                 XXXXXXX       \n"
                 + "\033[0m";
 
-        return head;
+        return logo;
     }
 
 
@@ -159,7 +159,7 @@ function wcaSay ()
     return function wcasay ( string )
     {
         printFinalString ( string );
-        console.log ( giveHead () );
+        console.log ( getLogo () );
     }
 }
 
